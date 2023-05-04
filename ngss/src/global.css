@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Rubik+Bubbles&display=swap');
 
-:root {}
+:root {
+    --primary-color: #F1F6F9;
+    --secondary-color: #394867;
+    --success-color: #03C988;
+}
 
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     height: 100vh;
+    background-color: var(--primary-color);
 }
 
 * {

@@ -1,0 +1,7 @@
+.navi {
+   background-color: var(--secondary-color);
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+   width: clamp(5%, 100%, 20%);
+   height: 100vh;
+}
