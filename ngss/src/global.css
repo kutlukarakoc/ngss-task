@@ -2,8 +2,13 @@
 
 :root {
     --primary-color: #F1F6F9;
-    --secondary-color: #394867;
-    --success-color: #03C988;
+    --secondary-color: #324a9a;
+    --accent-color: #03C988;
+    --subtitle-font: 18px;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -13,8 +18,10 @@ body {
     background-color: var(--primary-color);
 }
 
-* {
-    box-sizing: border-box;
+img {
+    display: block;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .flex-center {
