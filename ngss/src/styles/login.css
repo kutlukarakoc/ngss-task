@@ -1,0 +1,65 @@
+.login {
+   height: 100%;
+}
+
+.login-form-wrapper {
+   width: 90%;
+   height: 100%;
+   max-width: 400px;
+   max-height: 450px;
+   background-color: var(--secondary-color);
+   padding: 2rem 1rem;
+   flex-direction: column;
+}
+
+.login-form-wrapper figure {
+   margin: 0 auto;
+   width: 75%;
+   margin-bottom: 1rem;
+}
+
+.login-form {
+   flex: 1;
+   flex-direction: column;
+   width: 100%;
+}
+
+.login-inputs {
+   flex: 1;
+   flex-direction: column;
+   row-gap: 1.5rem;
+   width: 100%;
+}
+
+.form-input-wrapper {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.form-input-wrapper label {
+   font-size: 14px;
+   font-weight: 500;
+   color: var(--primary-color);
+}
+
+.form-input-wrapper input {
+   padding: 8px 6px;
+   outline: none;
+   border: 1px solid var(--primary-color);
+}
+
+.form-input-wrapper input:focus {
+   border: 1px solid var(--accent-color);
+}
+
+.login-submit {
+   background-color: var(--accent-color);
+   color: #fff;
+   outline: none;
+   border: none;
+   width: 50%;
+   padding: 6px 0;
+   font-size: 20px;
+   text-transform: uppercase;
+}

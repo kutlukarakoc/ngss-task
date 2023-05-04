@@ -8,6 +8,7 @@ import { INaviLink } from "../types/naviLinksType"
 import "../styles/sideNavi.css"
 
 const SideNavi: React.FC = () => {
+
    return (
       <aside className="navi">
          <figure className="navi-logo">
@@ -29,8 +30,13 @@ const SideNavi: React.FC = () => {
                </NavLink>
             ))}
          </div>
+
+         <div className="navi-footer flex-center">
+            <div>logged in</div>
+         </div>
+
       </aside>
-   );
-};
+   )
+}
 
 export default SideNavi

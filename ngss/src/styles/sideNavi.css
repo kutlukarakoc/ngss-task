@@ -1,10 +1,10 @@
 .navi {
-   background-color: var(--primary-color);
+   background-color: var(--secondary-color);
    -ms-flex-negative: 0;
    flex-shrink: 0;
-   width: clamp(5%, 100%, 20%);
+   width: clamp(65px, 100%, 20%);
    height: 100vh;
-   padding: 1rem 0;
+   padding: 3rem 0;
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
@@ -15,20 +15,18 @@
    -webkit-box-align: center;
    -ms-flex-align: center;
    align-items: center;
+   -webkit-box-pack: justify;
+   -ms-flex-pack: justify;
+   justify-content: space-between;
+   position: fixed;
 }
 
-.navi-logo {
-   height: 40%;
-}
-
-.navi-logo img {
-   max-height: 100px;
-   min-width: 65px;
-   width: 100%;
+.navi-logo figure {
+   margin: 0;
+   width: 95%;
 }
 
 .navi-pages {
-   height: 50%;
    -webkit-box-orient: vertical;
    -webkit-box-direction: normal;
    -ms-flex-direction: column;
@@ -53,7 +51,7 @@
 }
 
 .navi-pages .navi-link.active {
-   color: var(--secondary-color);
+   color: var(--primary-color);
    position: relative;
 }
 
@@ -64,16 +62,25 @@
    height: 2px;
    bottom: 0;
    left: 0;
-   background-color: var(--secondary-color);
+   background-color: var(--primary-color);
+}
+
+.navi-footer {
+   width: calc(100% - 10px);
+}
+
+.navi-footer .navi-register {
+   text-decoration: none;
+   color: var(--secondary-color);
+   background-color: var(--accent-color);
+   width: 100%;
+   max-width: 200px;
+   text-align: center;
+   padding: 6px 0;
 }
 
 
 @media screen and (max-width: 600px) {
-
-   .navi-logo {
-      height: 30%;
-   }
-
    .navi-pages {
       row-gap: 1rem;
    }
