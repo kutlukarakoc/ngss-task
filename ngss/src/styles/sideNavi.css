@@ -21,11 +21,6 @@
    position: fixed;
 }
 
-.navi-logo figure {
-   margin: 0;
-   width: 95%;
-}
-
 .navi-pages {
    -webkit-box-orient: vertical;
    -webkit-box-direction: normal;

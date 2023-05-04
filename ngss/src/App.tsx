@@ -13,16 +13,18 @@ import "./styles/app.css"
 
 const App: React.FC = () => {
 
-   /* gettin url data for login page */
-   const loginMatch = useMatch("/login")
+    /* gettin url data for login page */
+    const matchedPath = useMatch("*")?.pathname
+    /* set true if matched paths is one of home's user's or dasboard's path */
+    const renderSideNavi = matchedPath === '/' || matchedPath === '/users' || matchedPath === '/dashboard'
 
-   /* set class depends on loginMatch status */
-   const contentClasses = loginMatch === null ? "content-container with-side" : "content-container"
+    /* set class depends on renderSideNavi status */
+    const contentClasses = renderSideNavi ? "content-container with-side" : "content-container"
 
     return (
         <main className="main-container">
-            {/* if its login page, render sideNavi, else not */}
-            {loginMatch === null && <SideNavi />}
+            {/* if its home or users or dashboard, render sideNavi, else not */}
+            {renderSideNavi && <SideNavi />}
             <section className={contentClasses}>
                 <Routes>
                     <Route path="/" element={<Home />} />
