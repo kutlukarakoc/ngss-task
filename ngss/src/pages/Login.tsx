@@ -1,3 +1,5 @@
+/* COMPONENTS */
+import Button from "../components/ui/Button"
 /* STYLE */
 import "../styles/login.css"
 
@@ -19,7 +21,8 @@ const Login: React.FC = () => {
                      <input type="password" id="password" name="password" />
                   </div>
                </div>
-               <button type="submit" className="login-submit">Login</button>
+               {/* <button type="submit" className="login-submit">Login</button> */}
+               <Button type="submit" classname="login-submit" children="Login" />
             </form>
          </div>
          <div>

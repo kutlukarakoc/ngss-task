@@ -7,7 +7,12 @@ interface IButton {
 
 const Button: React.FC<IButton> = ({ children, click, classname, type }) => {
    return (
-      <button type={type} className={classname} onClick={click}>
+      <button
+         type={type}
+         className={classname}
+         onClick={click}
+         style={{ cursor: "pointer", border: "none", outline: "none" }}
+      >
          {children}
       </button>
    )
