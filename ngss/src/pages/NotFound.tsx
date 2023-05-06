@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 /* PAGE BACKGROUND IMAGE */
 import notFoundImage from '../assets/images/not-found.png'
+import { useAppSelector } from '../store/hooks'
 
 const NotFound: React.FC = () => {
-
+   
    /* a state to holds user login status */
-   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+   const loginStatus = useAppSelector(state => state.auth.loginStatus)
 
    /* a state variable to keep track of whether to redirect or not */
    const [redirect, setRedirect] = useState<boolean>(false)
@@ -28,7 +29,7 @@ const NotFound: React.FC = () => {
             <img src={notFoundImage} alt='ngss' />
             {/* if user is logged in, redirect to homepage, else redirect to login page when redirect state is true*/}
             {
-               isLoggedIn
+               loginStatus
                   ? redirect && <Navigate replace to='/' />
                   : redirect && <Navigate replace to='/login' />
             }
@@ -36,7 +37,7 @@ const NotFound: React.FC = () => {
          <h1 style={{color:'#fff',fontSize:'1.5em', textAlign:'center', margin:'0'}}>
             {/* display information message to user depends on login status */}
             {
-               isLoggedIn 
+               loginStatus 
                   ? 'You will be redirected to the homepage soon...' 
                   : 'You will be redirected to the login page soon...'
             }

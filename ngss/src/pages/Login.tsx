@@ -13,7 +13,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 const Login: React.FC = () => {
 
 	/* get auth states from store */
-	const { login, isLoading, error } = useAppSelector(state => state.auth)
+	const { isLoading, error, loginStatus } = useAppSelector(state => state.auth)
 	
 	const dispatch = useAppDispatch()
 
@@ -32,14 +32,14 @@ const Login: React.FC = () => {
 		if (payload.username && payload.password) {
 			dispatch(postAuth(payload))
 			/* if form succeed navigate user */
-			if (!Object.keys(login).length) {
+			if (loginStatus) {
 				navigate('/')
 			}
 		}
 	}
 
 	/* if user is logged in already, navigate immediatly(hide) login page */
-	if (Object.keys(login).length) {
+	if (loginStatus) {
 		return <Navigate replace to='/' />
 	}
 	/* if user is bot logged in, display login page */

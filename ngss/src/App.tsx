@@ -13,7 +13,7 @@ import { Routes, Route, useMatch } from 'react-router-dom'
 import './styles/app.css'
 
 const App: React.FC = () => {
-
+    
     /* gettin url data for login page */
     const matchedPath: string = useMatch('*')?.pathname ?? ''
     /* allowed paths for displaying side navi */
