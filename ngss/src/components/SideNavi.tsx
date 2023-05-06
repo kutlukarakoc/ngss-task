@@ -11,7 +11,7 @@ import '../styles/sideNavi.css'
 
 const SideNavi: React.FC = () => {
 
-   const user = useAppSelector(state => state.auth.user)
+   const login = useAppSelector(state => state.auth.login)
 
    return (
       <aside className='navi'>
@@ -42,10 +42,10 @@ const SideNavi: React.FC = () => {
                   isPending ? 'navi-footer-wrapper flex-center' : isActive ? 'navi-footer-wrapper flex-center active' : 'navi-footer-wrapper flex-center'}
             >
                <figure className='navi-footer-pp flex-center'>
-                  <img src={user.image} alt="ngss" width='40' height='40' />
+                  <img src={login.image} alt="ngss" width='40' height='40' />
                </figure>
                <p className='navi-footer-username navi-link'>
-                  Welcome {user.firstName}
+                  Welcome {login.firstName}
                </p>
             </NavLink>
          </div>

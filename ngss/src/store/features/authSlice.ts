@@ -5,13 +5,13 @@ import type { RootState } from '../store';
 import { ILogin } from '../../types/authTypes';
 
 interface IAuth {
-   user: ILogin,
+   login: ILogin,
    isLoading: boolean,
    error: string | null
 }
 
 const initialState: IAuth = {
-   user: JSON.parse(`${localStorage.getItem('user')}`) ?? {},
+   login: JSON.parse(`${localStorage.getItem('login')}`) ?? {},
    isLoading: false,
    error: null
 }
@@ -35,8 +35,8 @@ export const authSlice = createSlice({
       });
       builder.addCase(postAuth.fulfilled, (state, action) => {
          state.isLoading = false;
-         state.user = action.payload;
-         localStorage.setItem('user', JSON.stringify(state.user));
+         state.login = action.payload;
+         localStorage.setItem('login', JSON.stringify(state.login));
       });
       builder.addCase(postAuth.rejected, (state, action) => {
          state.isLoading = false;
@@ -45,5 +45,5 @@ export const authSlice = createSlice({
    }
 });
 
-export const auth = (state: RootState) => state.auth.user;
+export const auth = (state: RootState) => state.auth.login;
 export default authSlice.reducer;
