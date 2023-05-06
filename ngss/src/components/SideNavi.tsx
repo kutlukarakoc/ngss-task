@@ -45,7 +45,7 @@ const SideNavi: React.FC = () => {
                   <img src={login.image} alt="ngss" width='40' height='40' />
                </figure>
                <p className='navi-footer-username navi-link'>
-                  Welcome {login.firstName}
+                  Welcome {login.username}
                </p>
             </NavLink>
          </div>
