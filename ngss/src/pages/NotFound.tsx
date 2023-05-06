@@ -6,9 +6,9 @@ import notFoundImage from '../assets/images/not-found.png'
 import { useAppSelector } from '../store/hooks'
 
 const NotFound: React.FC = () => {
-   
-   /* a state to holds user login status */
-   const loginStatus = useAppSelector(state => state.auth.loginStatus)
+
+    /* a state to holds user login status from store */
+   const loginStatus = useAppSelector(state => state)
 
    /* a state variable to keep track of whether to redirect or not */
    const [redirect, setRedirect] = useState<boolean>(false)
