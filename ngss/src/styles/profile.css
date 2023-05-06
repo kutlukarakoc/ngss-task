@@ -1,11 +1,17 @@
 .profile {
-   display: flex;
-   align-items: center;
+   height: 100%;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -ms-flex-direction: column;
    flex-direction: column;
 }
 
 .profile-header {
+   display: -webkit-box;
+   display: -ms-flexbox;
    display: flex;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
    align-items: center;
    background-color: var(--primary-color);
    margin-bottom: 2rem;
@@ -39,9 +45,17 @@
 
 .profile-content {
    margin-top: 5rem;
+   display: -webkit-box;
+   display: -ms-flexbox;
    display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
    justify-content: center;
+   -webkit-box-align: start;
+   -ms-flex-align: start;
    align-items: flex-start;
+   -webkit-column-gap: 2rem;
+   -moz-column-gap: 2rem;
    column-gap: 2rem;
 }
 
@@ -73,8 +87,15 @@
 
 @media screen and (max-width: 976px) {
    .profile-content {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-column-gap: unset;
+      -moz-column-gap: unset;
       column-gap: unset;
       margin-top: 3rem;
    }
@@ -82,6 +103,9 @@
 
 @media screen and (max-width: 600px) {
    .profile-header {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
    }
 

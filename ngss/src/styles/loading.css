@@ -4,15 +4,30 @@
    border-radius: 50%;
    width: 22px;
    height: 22px;
+   -webkit-animation: spin 1s linear infinite;
    animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
+@-webkit-keyframes spin {
    0% {
+      -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
    }
 
    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes spin {
+   0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
    }
 }
