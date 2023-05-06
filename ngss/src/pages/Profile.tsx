@@ -1,3 +1,5 @@
+/* ROOT */
+import { Navigate } from 'react-router-dom'
 /* STORE */
 import { useAppSelector } from '../store/hooks'
 /* STYLE */
@@ -5,10 +7,17 @@ import '../styles/profile.css'
 
 const Profile: React.FC = () => {
 
-   const user = useAppSelector(state => state.auth.user)
+   /* a state to holds user infos and login status from store */
+   const { user, loginStatus } = useAppSelector(state => state.auth)
 
+   /* hide profile page if user not logged in, navite to home page */
+   if(!loginStatus) {
+      return <Navigate replace to='/'/>
+   }
+
+   /* display if user logged in */
    return (
-      <section className='profile'>
+      <section className='profile flex-center'>
          <div className='profile-header'>
             <figure className='profile-header-pp'>
                <img src={user.image} alt="ngss"/>
