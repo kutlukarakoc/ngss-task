@@ -1,54 +1,80 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import type { RootState } from '../store'
-/* TYPES */
 import { ILogin } from '../../types/authTypes'
+import { IUser } from '../../types/userTypes'
 
 interface IAuth {
-   login: ILogin,
-   isLoading: boolean,
-   error: string | null
-   loginStatus: boolean
+    login: ILogin
+    loginLoading: boolean
+    loginError: string | null
+    loginStatus: boolean
+    user: IUser
+    userLoading: boolean
+    userError: string | null
 }
 
 const initialState: IAuth = {
-   login: JSON.parse(`${localStorage.getItem('login')}`) ?? {},
-   isLoading: false,
-   error: null,
-   loginStatus: JSON.parse(`${localStorage.getItem('login')}`) ? true : false
+    login: JSON.parse(`${localStorage.getItem('login')}`) ?? {},
+    loginLoading: false,
+    loginError: null,
+    loginStatus: JSON.parse(`${localStorage.getItem('login')}`) ? true : false,
+    user: JSON.parse(`${localStorage.getItem('user')}`) ?? {},
+    userLoading: false,
+    userError: null
 }
 
 export const postAuth = createAsyncThunk(
-   'auth/postAuth',
-   async (payload: { username: string, password: string }) => {
-      const response = await axios.post('https://dummyjson.com/auth/login', payload)
-      return response.data
-   }
+    'auth/postAuth',
+    async (payload: { username: string, password: string }) => {
+        const response = await axios.post('https://dummyjson.com/auth/login', payload)
+        return response.data
+    }
+)
+
+export const getUserById = createAsyncThunk(
+    'auth/getUserById',
+    async (userId: number) => {
+        const response = await axios.get(`https://dummyjson.com/users/${userId}`)
+        return response.data
+    }
 )
 
 export const authSlice = createSlice({
-   name: 'auth',
-   initialState,
-   reducers: {},
-   extraReducers: (builder) => {
-      builder.addCase(postAuth.pending, (state) => {
-         state.isLoading = true
-         state.error = null
-         state.loginStatus = false
-      })
-      builder.addCase(postAuth.fulfilled, (state, action) => {
-         state.isLoading = false
-         state.login = action.payload
-         state.loginStatus = true
-         localStorage.setItem('login', JSON.stringify(state.login))
-      })
-      builder.addCase(postAuth.rejected, (state, action) => {
-         state.isLoading = false
-         state.error = 'Something went wrong. Please try again later.'
-         state.loginStatus = false
-      })
-   }
+    name: 'auth',
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(postAuth.pending, (state) => {
+            state.loginLoading = true
+            state.loginError = null
+            state.loginStatus = false
+        })
+        builder.addCase(postAuth.fulfilled, (state, action) => {
+            state.loginLoading = false
+            state.login = action.payload
+            state.loginStatus = true
+            localStorage.setItem('login', JSON.stringify(state.login))
+        })
+        builder.addCase(postAuth.rejected, (state) => {
+            state.loginLoading = false
+            state.loginError = 'Something went wrong. Please try again later.'
+            state.loginStatus = false
+        })
+        builder.addCase(getUserById.pending, (state) => {
+            state.userLoading = true
+            state.userError = null
+        })
+        builder.addCase(getUserById.fulfilled, (state, action) => {
+            state.user = action.payload
+            localStorage.setItem('user', JSON.stringify(state.user))
+        })
+        builder.addCase(getUserById.rejected, (state) => {
+            state.userLoading = false
+            state.userError = 'Something went wrong. Please try again later.'
+        })
+    },
 })
 
-export const auth = (state: RootState) => state.auth.login
+export const auth = (state: RootState) => state.auth
 export default authSlice.reducer
