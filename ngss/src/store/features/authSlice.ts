@@ -5,11 +5,11 @@ import { ILogin } from '../../types/authTypes'
 import { IUser } from '../../types/userTypes'
 
 interface IAuth {
-    login: ILogin
+    login: ILogin | null
     loginLoading: boolean
     loginError: string | null
     loginStatus: boolean
-    user: IUser
+    user: IUser | null
     userLoading: boolean
     userError: string | null
 }
@@ -43,7 +43,17 @@ export const getUserById = createAsyncThunk(
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        clearLogin: (state) => {
+            state.login = null
+            state.loginStatus = false
+            localStorage.removeItem('login')
+        },
+        clearUser: (state) => {
+            state.user = null
+            localStorage.removeItem('user')
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(postAuth.pending, (state) => {
             state.loginLoading = true
@@ -78,3 +88,4 @@ export const authSlice = createSlice({
 
 export const auth = (state: RootState) => state.auth
 export default authSlice.reducer
+export const { clearLogin, clearUser } = authSlice.actions

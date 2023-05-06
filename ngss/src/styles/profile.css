@@ -102,6 +102,10 @@
 }
 
 @media screen and (max-width: 600px) {
+   .profile {
+      justify-content: unset;
+   }
+
    .profile-header {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
