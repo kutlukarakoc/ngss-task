@@ -5,6 +5,7 @@
     --secondary-color: #F1F6F9;
     --accent-color: #03C988;
     --subtitle-font: 18px;
+    --title-font-: 22px;
 }
 
 * {
@@ -20,6 +21,7 @@ body {
     font-family: 'Poppins', sans-serif;
     height: 100vh;
     background-color: var(--primary-color);
+    font-size: 13px;
 }
 
 #root {
