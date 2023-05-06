@@ -1,5 +1,5 @@
 /* ROUTE */
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 /* CONSTANTS */
 import { naviLinks } from '../constants/naviLinks'
 /* TYPE */
@@ -16,10 +16,14 @@ const SideNavi: React.FC = () => {
 
    const login = useAppSelector(state => state.auth.login)
    const dispatch = useAppDispatch()
+   
+   const navigate = useNavigate()
 
+   /* clear login and user state, navigate to login page */
    const handleLogout = () => {
       dispatch(clearLogin())
       dispatch(clearUser())
+      navigate('/login')
    }
 
    return (
@@ -46,7 +50,7 @@ const SideNavi: React.FC = () => {
 
          <div className='navi-footer'>
             <div className='navi-footer-wrapper flex-center'>
-               <p className='navi-footer-username navi-link'>Welcome {login?.username}</p>
+               <p className='navi-footer-username'>Welcome {login?.username}</p>
                <Button type='button' classname='navi-footer-logout' click={handleLogout}>Log out</Button>
             </div>
          </div>
