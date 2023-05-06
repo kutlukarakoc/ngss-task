@@ -1,23 +1,27 @@
 /* ROUTE */
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 /* CONSTANTS */
-import { naviLinks } from "../constants/naviLinks"
+import { naviLinks } from '../constants/naviLinks'
 /* TYPE */
-import { INaviLink } from "../types/naviLinksType"
+import { INaviLink } from '../types/naviLinksType'
+/* STORE */
+import { useAppSelector } from '../store/hooks'
 /* STYLE */
-import "../styles/sideNavi.css"
+import '../styles/sideNavi.css'
 
 const SideNavi: React.FC = () => {
 
+   const user = useAppSelector(state => state.auth.user)
+
    return (
-      <aside className="navi">
-         <figure className="navi-logo">
+      <aside className='navi'>
+         <figure className='navi-logo'>
             <img
-               src="https://h8cc60.n3cdn1.secureserver.net/wp-content/uploads/2020/09/ngss-logo.png"
-               alt="ngss"
+               src='https://h8cc60.n3cdn1.secureserver.net/wp-content/uploads/2020/09/ngss-logo.png'
+               alt='ngss'
             />
          </figure>
-         <div className="navi-pages">
+         <div className='navi-pages'>
             {naviLinks.map(({ to, label, classname }: INaviLink) => (
                <NavLink
                   key={to}
@@ -31,10 +35,20 @@ const SideNavi: React.FC = () => {
             ))}
          </div>
 
-         <div className="navi-footer flex-center">
-            <div>logged in</div>
+         <div className='navi-footer'>
+            <NavLink
+               to="/profile"
+               className={({ isActive, isPending }) =>
+                  isPending ? 'navi-footer-wrapper flex-center' : isActive ? 'navi-footer-wrapper flex-center active' : 'navi-footer-wrapper flex-center'}
+            >
+               <figure className='navi-footer-pp flex-center'>
+                  <img src={user.image} alt="ngss" width='40' height='40' />
+               </figure>
+               <p className='navi-footer-username navi-link'>
+                  Welcome {user.firstName}
+               </p>
+            </NavLink>
          </div>
-
       </aside>
    )
 }
