@@ -3,4 +3,5 @@ export interface ILoading {
    bgColor?: string
    color?: string
    innerSize?: string
+   classname?: string
 }

@@ -24,10 +24,10 @@ const App: React.FC = () => {
     const contentClasses = renderSideNavi ? 'content-container with-side' : 'content-container'
 
     return (
-        <main className='main-container'>
+        <main className='main-container' >
             {/* if its home or users or dashboard, render sideNavi, else not */}
             {renderSideNavi && <SideNavi />}
-            <section className={contentClasses}>
+            <div className={contentClasses}>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/users' element={<Users />} />
@@ -36,7 +36,7 @@ const App: React.FC = () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
-            </section>
+            </div>
         </main>
     )
 }

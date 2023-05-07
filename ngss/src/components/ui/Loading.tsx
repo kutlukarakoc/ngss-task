@@ -4,10 +4,10 @@ import '../../styles/loading.css'
 import { ILoading } from '../../types/loadingTypes'
 
 
-const Loading: React.FC<ILoading> = ({ size, bgColor, color, innerSize }) => {
+const Loading: React.FC<ILoading> = ({ size, bgColor, color, innerSize, classname }) => {
    return (
       <div
-         className='loader'
+         className={'loader ' + classname}
          style={{
             width: size,
             height: size,

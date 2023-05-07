@@ -93,6 +93,20 @@
    font-weight: 600;
 }
 
+.home-load-more {
+   background-color: transparent;
+   margin: 1rem auto .5rem auto;
+   width: 100%;
+   font-size: 18px;
+   text-decoration: underline;
+   text-underline-offset: 5px;
+   color: var(--accent-color);
+}
+
+.home-load-loading {
+   margin: 1rem auto 0.5rem auto;
+}
+
 @media screen and (max-width: 600px) {
    .home-post {
       -webkit-box-orient: vertical;
