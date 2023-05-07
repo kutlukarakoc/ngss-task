@@ -1,3 +1,5 @@
+import { IUser } from "./userTypes";
+
 export interface IPost {
    id: number
    title: string
@@ -5,4 +7,5 @@ export interface IPost {
    userId: number
    tags: string[]
    reactions: number
+   user?: IUser
 } 

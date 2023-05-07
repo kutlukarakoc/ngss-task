@@ -4,21 +4,18 @@ import type { RootState } from '../store'
 import { IUser } from '../../types/userTypes'
 import { IPost } from '../../types/postTypes'
 
-interface IPosts {
+interface IPostWithUser  {
+    user: IUser[]
     posts: IPost[]
-    postsLoading: boolean
-    postsError: string | null
-}
-
-interface IPostWithUser extends IPosts {
-    users: IUser[]
+    isLoading: boolean
+    isError: string | null
 }
 
 const initialState: IPostWithUser = {
-    users: [],
+    user: [],
     posts: [],
-    postsLoading: false,
-    postsError: null,
+    isLoading: false,
+    isError: null,
 }
 
 /* an async thunk that fetches posts and users from an API */
@@ -38,7 +35,7 @@ export const fetchPosts = createAsyncThunk(
             .filter((response): response is PromiseFulfilledResult<AxiosResponse<IUser>> => response.status === 'fulfilled')
             .map(response => response.value.data)
 
-        /* combine the users and the posts that were matched by user id */
+        /* combine the users and the posts that were matched by  */
         const postsWithUsers: IPost[] = posts.map(post => {
             const user = users.find(user => user.id === post.userId)
             return { ...post, user }
@@ -54,19 +51,19 @@ export const postsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchPosts.pending, (state) => {
-            state.postsLoading = true
+            state.isLoading = true
         })
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
-            state.postsLoading = false
+            state.isLoading = false
             let newPosts = action.payload
             /* filter item if already exists in state */
-            const filteredPosts = newPosts.filter((newPost) => !state.posts.some((post) => post.id === newPost.id))
-            state.posts.push(...filteredPosts)
+            const filteredPosts = newPosts.filter(newPost => !state.posts.some((post) => post.id === newPost.id))
+            state.posts = [...state.posts, ...filteredPosts]
         })
 
         builder.addCase(fetchPosts.rejected, (state) => {
-            state.postsLoading = false
-            state.postsError = 'Something went wrong. Please try again later.'
+            state.isLoading = false
+            state.isError = 'Something went wrong. Please try again later.'
         })
     },
 })

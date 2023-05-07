@@ -1,19 +1,54 @@
 /* ROUTE */
 import { Navigate } from 'react-router-dom'
 /* STORE */
-import { useAppSelector } from '../store/hooks'
+import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { fetchPosts } from '../store/features/postsSlice'
+/* HOOKS */
+import { useState, useEffect } from 'react'
+/* STYLE */
+import '../styles/home.css'
 
 const Home: React.FC = () => {
 
+   const dispatch = useAppDispatch()
+
+   useEffect(() => {
+      dispatch(fetchPosts(0))
+   }, [])
+
    /* login status from store */
    const loginStatus = useAppSelector(state => state.auth.loginStatus)
+   /* */
+   const posts = useAppSelector(state => state.posts)
+   console.log('p', posts)
 
    /* if user is logged in, display the home page */
    if (loginStatus) {
       return (
-         <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex odio fugiat adipisci est eum, repudiandae earum omnis id repellat ipsum laboriosam eligendi! Doloremque, harum maxime voluptate magnam, et inventore odit aliquid, rerum neque incidunt quos. Eveniet consequatur iste ipsum quibusdam error! Unde doloribus delectus iusto, vel quidem sunt totam quaerat voluptatem voluptas nemo ipsa. Reprehenderit illum excepturi aut quidem incidunt sint nam tempora temporibus est non. Placeat iste atque, eaque, blanditiis amet magni consequuntur laborum officia, ipsum culpa quas. Nihil animi eius officiis, atque voluptas at, nostrum nam impedit sapiente nobis voluptatibus architecto sed cumque. Inventore nisi eligendi officiis modi?
-         </div>
+         <section className='home'>
+            <div className='home-wrapper'>
+               {
+                  posts.posts.map(post => (
+                     <div className='home-post' key={post?.id}>
+                        <figure className='home-post-pp'>
+                           <img src={post?.user?.image} alt={post?.title}/>
+                        </figure>
+                        <div className='home-post-content'>
+                           <div className='home-post-user'>
+                              <div className='home-post-user-name'>{post?.user?.firstName} {post?.user?.lastName}</div>
+                              <div className='home-post-user-username'>@{post?.user?.username}</div>
+                           </div>
+                           <div className='home-post-text'>{post?.body}</div>
+                        </div>
+                        <div className='home-post-reaction'>
+                           <div className='home-post-reaction-icon'></div>
+                           <div className='home-post-reaction-count'>{post?.reactions}</div>
+                        </div>
+                     </div>
+                  ))
+               }
+            </div>
+         </section>
       )
    }
 
