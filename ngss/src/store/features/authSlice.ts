@@ -57,8 +57,6 @@ export const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(postAuth.pending, (state) => {
             state.loginLoading = true
-            state.loginError = null
-            state.loginStatus = false
         })
         builder.addCase(postAuth.fulfilled, (state, action) => {
             state.loginLoading = false
@@ -69,11 +67,9 @@ export const authSlice = createSlice({
         builder.addCase(postAuth.rejected, (state) => {
             state.loginLoading = false
             state.loginError = 'Something went wrong. Please try again later.'
-            state.loginStatus = false
         })
         builder.addCase(getUserById.pending, (state) => {
             state.userLoading = true
-            state.userError = null
         })
         builder.addCase(getUserById.fulfilled, (state, action) => {
             state.user = action.payload
