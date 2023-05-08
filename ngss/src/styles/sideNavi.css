@@ -23,6 +23,7 @@
 
 .navi-logo {
    width: 95%;
+   max-width: 175px;
 }
 
 .navi-pages {

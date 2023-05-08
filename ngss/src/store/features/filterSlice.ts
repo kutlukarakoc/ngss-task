@@ -3,8 +3,13 @@ import axios from 'axios'
 import type { RootState } from '../store'
 import { IUser } from '../../types/userTypes'
 
-interface IFilter {
-	filteredUsers: IUser[]
+interface IFilter{
+	users: {
+		users: IUser[]
+		total: number,
+		limit: number,
+		skip: number
+	}
 	isLoading: boolean
 	isError: string | null
 }
@@ -15,7 +20,12 @@ interface IFilterParams {
 }
 
 const initialState: IFilter = {
-	filteredUsers: [],
+	users: {
+		users: [],
+		total: 0,
+		skip: 0,
+		limit: 0,
+	},
 	isLoading: false,
 	isError: null
 }
@@ -38,7 +48,7 @@ export const filterSlice = createSlice({
 		})
 		builder.addCase(filterUser.fulfilled, (state, action) => {
 			state.isLoading = false
-			state.filteredUsers = action.payload
+			state.users = action.payload
 		})
 		builder.addCase(filterUser.rejected, (state) => {
 			state.isLoading = false

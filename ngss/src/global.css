@@ -38,6 +38,11 @@ img {
    object-fit: contain;
 }
 
+ul {
+   list-style: none;
+   padding: 0;
+}
+
 .flex-center {
    display: -webkit-box;
    display: -ms-flexbox;

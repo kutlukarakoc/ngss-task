@@ -6,19 +6,27 @@ import { filterUser } from '../store/features/filterSlice'
 /* CONSTANTS */
 import { filters } from '../constants/filters'
 /* COMPONENTS */
+import UserNotFound from '../components/UserNotFound'
+import UserCard from '../components/UserCard'
 import Button from '../components/ui/Button'
 /* STYLE */
 import '../styles/users.css'
+/* HOOKS */
+import { useState } from 'react'
+
 
 const Users: React.FC = () => {
 
    const dispatch = useAppDispatch()
 
-   /* get login status from store */
+   /* get login status and filtered users from store */
    const loginStatus = useAppSelector(state => state.auth.loginStatus)
    const filteredUsers = useAppSelector(state => state.filter)
 
-   const handleFilter = (event: React.FormEvent<HTMLFormElement>) => {
+   /* a state to keep tracking if filtered users respose is not empty */
+   const [usersFound, setUsersFound] = useState<boolean | null>(null)
+
+   const handleFilter = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       /* create payload for state */
       const form = event.currentTarget
@@ -27,13 +35,15 @@ const Users: React.FC = () => {
          filterValue: form.value.value
       }
 
-      /* if form areas filled, execute dispatches */
+      /* if form areas filled, execute dispatch */
       if (payload.filterKey && payload.filterValue) {
-         dispatch(filterUser(payload))
+         const result = await dispatch(filterUser(payload))
+         /* if state is not loading and users are not found, set usersFound state to false, else set true */
+         if (!filteredUsers.isLoading) {
+            result.payload.total === 0 ? setUsersFound(false) : setUsersFound(true)
+         }
       }
    }
-
-   console.log('filteredUsers', filteredUsers)
 
    /* if user is not logged in, redirect to login page */
    if (!loginStatus) {
@@ -57,7 +67,13 @@ const Users: React.FC = () => {
                <Button type='submit' classname='filter-submit-btn'>Filter</Button>
             </form>
          </div>
-         <div className='users-content'>content</div>
+         <div className='users-content'>
+            {
+               usersFound !== null
+                  ? usersFound ? <UserCard /> : <UserNotFound />
+                  : <h1 style={{ fontSize: "32px", color: "#F1F6F9", textAlign: "center" }}>Kullanıcılara dair bilgileri görmek için filtreleyin.</h1>
+            }
+         </div>
       </section>
    )
 }
@@ -69,6 +85,3 @@ export default Users
 
 // user id ile sepet bilgilerini getir
 //'https://dummyjson.com/users/5/carts'
-
-// filter user by key value
-//'https://dummyjson.com/users/filter?key=hair.color&value=Brown'
