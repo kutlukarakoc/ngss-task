@@ -21,10 +21,11 @@ const UserCard: React.FC = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
 
    /* open popup, set hidden to body's overflow for ignore user scroll, fetch previous posts */
-   const handleOpen = (id: number) => {
-      setIsOpen(true)
+   const handleOpen = async (id: number) => {
+      await dispatch(fetchPreviousPosts(id))
       document.body.style.overflow = 'hidden'
-      dispatch(fetchPreviousPosts(id))
+      setIsOpen(true)
+      
    }
 
    /* close popup and set auto to body's overflow for user scrolling, clear previous posts state*/
@@ -62,23 +63,25 @@ const UserCard: React.FC = () => {
          }
          <Popup isOpen={isOpen} onClose={handleClose}>
             {
-               previousPosts.posts.total > 0 && !previousPosts.isLoading ? (
-                  <>
-                     {
-                        previousPosts.posts.posts.map(post => (
-                           <div key={post.id}>
-                              <h3 className='popup-post-title'>{post.title}</h3>
-                              <p className='popup-post'>{post.body}</p>
-                           </div>
-                        ))
-                     }
-                  </>
-               ) : (
-                  <div className='flex-center' style={{ flexDirection: 'column' }}>
-                     <h3 style={{ textAlign: 'center', color: '#324A9A' }}>No previous posts found for this user.</h3>
-                     <img src={noResultFound} alt='ngss' />
-                  </div>
-               )
+               !previousPosts.isLoading ? (
+                  previousPosts.posts.total > 0 ? (
+                     <>
+                        {
+                           previousPosts.posts.posts.map(post => (
+                              <div key={post.id}>
+                                 <h3 className='popup-post-title'>{post.title}</h3>
+                                 <p className='popup-post'>{post.body}</p>
+                              </div>
+                           ))
+                        }
+                     </>
+                  ) : (
+                     <div className='flex-center' style={{ flexDirection: 'column' }}>
+                        <h3 style={{ textAlign: 'center', color: '#324A9A' }}>No previous posts found for this user.</h3>
+                        <img src={noResultFound} alt='ngss' />
+                     </div>
+                  )
+               ) : null
             }
          </Popup>
       </>
