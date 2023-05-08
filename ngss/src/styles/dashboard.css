@@ -1,0 +1,10 @@
+.dashboard-chart {
+   max-width: 400px;
+   width: 100%;
+   background-color: var(--secondary-color);
+   padding: 1rem;
+}
+
+.age-chart {
+   margin-left: auto;
+}

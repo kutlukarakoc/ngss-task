@@ -25,7 +25,6 @@ const UserCard: React.FC = () => {
       await dispatch(fetchPreviousPosts(id))
       document.body.style.overflow = 'hidden'
       setIsOpen(true)
-      
    }
 
    /* close popup and set auto to body's overflow for user scrolling, clear previous posts state*/
