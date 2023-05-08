@@ -16,7 +16,7 @@ const SideNavi: React.FC = () => {
 
    const login = useAppSelector(state => state.auth.login)
    const dispatch = useAppDispatch()
-   
+
    const navigate = useNavigate()
 
    /* clear login and user state, navigate to login page */

@@ -2,7 +2,7 @@ interface IButton {
    children?: React.ReactNode
    click?: () => void
    classname: string
-   type: "button" | "submit"
+   type: 'button' | 'submit'
 }
 
 const Button: React.FC<IButton> = ({ children, click, classname, type }) => {
@@ -11,7 +11,7 @@ const Button: React.FC<IButton> = ({ children, click, classname, type }) => {
          type={type}
          className={classname}
          onClick={click}
-         style={{ cursor: "pointer", border: "none", outline: "none" }}
+         style={{ cursor: 'pointer', border: 'none', outline: 'none' }}
       >
          {children}
       </button>

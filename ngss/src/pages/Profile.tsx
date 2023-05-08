@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
       <section className='profile flex-center'>
          <div className='profile-header'>
             <figure className='profile-header-pp'>
-               <img src={user?.image} alt="ngss"/>
+               <img src={user?.image} alt='ngss'/>
             </figure>
             <div className='profile-header-content'>
                <h1 className='profile-user-name'>{user?.firstName} {user?.lastName}</h1>

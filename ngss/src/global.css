@@ -1,51 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Rubik+Bubbles&display=swap');
 
 :root {
-    --primary-color: #324A9A;
-    --secondary-color: #F1F6F9;
-    --accent-color: #03C988;
-    --subtitle-font: 22px;
-    --title-font: 32px;
+   --primary-color: #324A9A;
+   --secondary-color: #F1F6F9;
+   --accent-color: #03C988;
+   --subtitle-font: 22px;
+   --title-font: 32px;
 }
 
 * {
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 
 html {
-    background-color: var(--primary-color);
+   background-color: var(--primary-color);
 }
 
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
-    background-color: var(--primary-color);
-    font-size: 13px;
+   margin: 0;
+   font-family: 'Poppins', sans-serif;
+   height: 100vh;
+   background-color: var(--primary-color);
+   font-size: 13px;
 }
 
 #root {
-    height: 100%;
+   height: 100%;
 }
 
-figure{
-    margin: 0;
+figure {
+   margin: 0;
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    object-fit: contain;
+   display: block;
+   max-width: 100%;
+   object-fit: contain;
 }
 
 .flex-center {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
 }
