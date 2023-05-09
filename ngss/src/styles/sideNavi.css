@@ -3,7 +3,7 @@
    -ms-flex-negative: 0;
    flex-shrink: 0;
    width: clamp(65px, 100%, 20%);
-   height: 100vh;
+   height: 100%;
    padding: 3rem 0;
    display: -webkit-box;
    display: -ms-flexbox;
