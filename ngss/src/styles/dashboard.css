@@ -1,10 +1,12 @@
 .dashboard-chart {
-   max-width: 400px;
+   max-width: 450px;
    width: 100%;
    background-color: var(--secondary-color);
    padding: 1rem;
+   margin: 1rem auto;
 }
 
-.age-chart {
-   margin-left: auto;
+.chart-title {
+   color: var(--primary-color);
+   text-align: center;
 }

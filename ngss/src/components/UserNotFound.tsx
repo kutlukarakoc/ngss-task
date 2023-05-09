@@ -2,7 +2,7 @@
 import userNotFoundImage from '../assets/images/user-not-found.png'
 
 const UserNotFound: React.FC = () => {
-   return(
+   return (
       <div className='users-not-found'>
          <figure className='users-not-found-img'>
             <img src={userNotFoundImage} alt='ngss' />
@@ -11,7 +11,7 @@ const UserNotFound: React.FC = () => {
             Users are not found. Try again with new values.
          </h2>
       </div>
-   )   
+   )
 }
 
 export default UserNotFound

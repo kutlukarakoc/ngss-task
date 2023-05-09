@@ -1,11 +1,7 @@
 /* STYLE */
 import '../styles/popup.css'
-
-interface IPopup {
-   isOpen: boolean
-   onClose: () => void
-   children: React.ReactNode
-}
+/* TYPES */
+import { IPopup } from '../types/popupTypes'
 
 const Popup: React.FC<IPopup> = ({ isOpen, onClose, children }) => {
    const handleClose = () => {

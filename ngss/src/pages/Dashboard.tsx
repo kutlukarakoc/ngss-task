@@ -1,56 +1,69 @@
-import Doughnut from '../components/DoughnutChart'
-import axios from 'axios'
+/* HOOKS */
 import { useEffect, useState } from 'react'
+/* COMPONENTS */
+import ChartWrapper from '../components/charts/ChartWrapper'
+/* ROUTE */
+import { Navigate } from 'react-router-dom'
+/* STORE */
+import { useAppSelector } from '../store/hooks'
+/* AXIOS */
+import axios from 'axios'
+/* TYPES */
+import { IUser } from '../types/userTypes'
+/* STYLES */
 import '../styles/dashboard.css'
 
-const Dashboard: React.FC<any> = () => {
+const Dashboard: React.FC = () => {
 
-   const [genderCount, setGenderCount] = useState<number[]>([0, 0])
-   const [ages, setAges] = useState<number[]>([])
+   /* get login status and posts from the store */
+   const loginStatus = useAppSelector(state => state.auth.loginStatus)
 
-   const fetchGenderCount = async (gender: string) => {
-      const response = await axios.get(`https://dummyjson.com/users/filter?key=gender&value=${gender}`)
-      const data = await response.data.total
-      if (gender === "male") {
-         setGenderCount((prev) => [data, prev[1]])
-      } else {
-         setGenderCount((prev) => [prev[0], data])
-      }
-   }
+   /* defining state variables that will be used to store fetched data */
+   const [genders, setGenders] = useState<[number, number]>([0, 0])
+   const [ages, setAges] = useState<[number, number]>([0, 0])
+   const [eyes, setEyes] = useState<number[]>([])
+   const [departments, setDepartments] = useState<number[]>([])
 
-   const fetchAges = async () => {
+   const fetchData = async () => {
       const response = await axios.get('https://dummyjson.com/users')
-      const data = await response.data.users
-      const ages = data.map((user: any) => user.age)
-      let ageUnderThirty: number[] = []
-      let ageAboveThirty: number[] = []
-      ages.forEach((age: number) => {
-         if (age < 30) {
-            ageUnderThirty = [...ageUnderThirty, age]
-         } else {
-            ageAboveThirty = [...ageAboveThirty, age]
-         }
-      })
-      setAges([ageUnderThirty.length, ageAboveThirty.length])
+      const data = response.data.users
+      /* counting the number of male and female users and updating the genders state variable */
+      const maleCount = data.filter((user: IUser) => user.gender === 'male').length
+      const femaleCount = data.filter((user: IUser) => user.gender === 'female').length
+      setGenders([maleCount, femaleCount])
+      /* Counting the number of users below and above 30 years old and updating the ages state variable */
+      const ageUnderThirtyCount = data.filter((user: IUser) => user.age < 30).length
+      const ageAboveThirtyCount = data.filter((user: IUser) => user.age >= 30).length
+      setAges([ageUnderThirtyCount, ageAboveThirtyCount])
+      /* counting the number of users with different eye colors and updating the eyes state variable */
+      const eyeColorsCount = data.reduce((acc: any, user: IUser) => {
+         acc[user.eyeColor] = acc[user.eyeColor] ? acc[user.eyeColor] + 1 : 1
+         return acc
+      }, {})
+      setEyes(Object.values(eyeColorsCount))
+      /* counting the number of users in different departments and updating the departments state variable */
+      const departmentCount = data.reduce((acc: any, user: IUser) => {
+         acc[user.company.department] = acc[user.company.department] ? acc[user.company.department] + 1 : 1
+         return acc
+      }, {})
+      setDepartments(Object.values(departmentCount))
    }
 
-
+   /* fetch data on first render */
    useEffect(() => {
-      (async () => {
-         await fetchGenderCount('male')
-         await fetchGenderCount('female')
-         await fetchAges()
-      })()
+      fetchData()
    }, [])
 
+   /* if the user is not logged in, redirect to login page */
+   if (!loginStatus) {
+      return <Navigate replace to='/login' />
+   }
    return (
       <section className='dashboard'>
-         <div className='dashboard-chart gender-chart'>
-            <Doughnut chartData={genderCount} chartLabels={['Male', 'Female']} />
-         </div>
-         <div className='dashboard-chart age-chart'>
-            <Doughnut chartData={ages} chartLabels={['Undert Thiry', 'Above Thirty']} />
-         </div>
+         <ChartWrapper title='Gender Distribution Chart' data={genders} labels={['Male', 'Female']} type='doughnut' />
+         <ChartWrapper title='Age Distribution Chart' data={ages} labels={['Under Thirty', 'Above Thirty']} type='pie' />
+         <ChartWrapper title='Eye Colors Distribution Chart' data={eyes} labels={['Green', 'Blue', 'Brown', 'Amber', 'Gray']} bgColor='rgba(54, 162, 235, 0.5)' type='vertical' />
+         <ChartWrapper title='Department Distribution Chart' data={departments} labels={['Marketing', 'Services', 'Support', 'Product Management', 'Human Resources', 'Sales', 'Engineering']} bgColor='rgba(255, 99, 132, 0.2)' type='vertical' />
       </section>
    )
 }

@@ -1,9 +1,10 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
+import { IChart } from '../../types/chartTypes'
+ 
+ChartJS.register(ArcElement, Tooltip, Legend)
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-const DoughnutChart: React.FC<any> = ({ chartData, chartLabels }) => {
+const DoughnutChart: React.FC<IChart> = ({ chartData, chartLabels }) => {
 
    const data = {
       labels: chartLabels,
@@ -22,9 +23,9 @@ const DoughnutChart: React.FC<any> = ({ chartData, chartLabels }) => {
             borderWidth: 1,
          },
       ],
-   };
+   }
 
-   return <Doughnut data={data} />;
+   return <Doughnut data={data} />
 }
 
 export default DoughnutChart
