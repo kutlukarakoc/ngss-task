@@ -16,8 +16,8 @@
 
 #### Anasayfada kullanıcalara ait postlar ve bu postlara gelen reactionlara yer veirilmiştir. Performansı yükseltmek için ilk olarak 10 post gelmekte, sayfanın altında Load More Post butonu ile sıradaki 10 post gelmekte ve böyle devam etmektedir.
 #### Profile sayfasında login olan kullanıcıya ait genel bilgiler bulunmaktadır.
-#### Users sayfasında filtreleme işlemi yaparak filtreye uygun kullanıcılar gözükmekte, user card'larındaki See User's Post butonu ile kullanıcının(varsa) post bilgileri görünmektedir.
+#### Users sayfasında filtreleme işlemi yaparak filtreye uygun kullanıcılar gözükmekte, user card'larındaki See User's Post butonu ile kullanıcının(varsa) post bilgileri görünmektedir.
 #### Dashboard sayfasında cinsiyet, yaş, göz rengi ve departman başlıklı 4 adet chart bulunmaktadır.
-#### Login sayfasında bir form bulunmakta ve eğer API'ye kayıtlı bir kullanıcının username ve password'ü ile giriş yapılırsa anasayfaya yönlendirmektedir.
-#### Not found sayfası ise üstteki 4 sayfanın haricinde bir sayfa girişi yapıldığında çalışmakta, sayfa açıldıktan 3 saniye sonra eğer kullanıcı loginli ise anasayfaya, değil ise login sayfasına yönlendirmektedir.
+#### Login sayfasında bir form bulunmakta ve eğer API'ye kayıtlı bir kullanıcının username ve password'ü ile giriş yapılırsa anasayfaya yönlendirmektedir.
+#### Not found sayfası ise üstteki 4 sayfanın haricinde bir sayfa girişi yapıldığında çalışmakta, sayfa açıldıktan 3 saniye sonra eğer kullanıcı loginli ise anasayfaya, değil ise login sayfasına yönlendirmektedir.
 #### Login olan kullanıcı bilgilerini, kullanıcı tekrar tekrar login olmasına gerek kalmaması adına local storage'a kayıt ettim.
