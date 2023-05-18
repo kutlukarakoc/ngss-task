@@ -10,7 +10,7 @@
 #### username : atuny0
 #### password : 9uQFF1Lh
 
-### In this project, I Used React, Typescript, Redux Toolkit, React Router Dom, React-Chartsjs-2, Axios ve CSS.
+### In this project, I Used React, Typescript, Redux Toolkit, React Router Dom, React-Chartsjs-2, Axios and CSS.
 
 ### The project consists of 6 pages: Home, Profile, Users, Dashboard, Login, and Not Found.
 
